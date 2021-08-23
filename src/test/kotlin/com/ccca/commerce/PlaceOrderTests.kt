@@ -1,5 +1,6 @@
 package com.ccca.commerce
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -84,5 +85,22 @@ class PlaceOrderTests {
         val orderOutputDto = placeOrderUseCase.execute(orderInputDto)
 
         assertEquals(orderOutputDto.shippingPrice, 10.0)
+    }
+
+
+    @Test
+    fun `should not create order with unknown item`() {
+        val orderInputDto = OrderInputDto(
+            cpf = Cpf("01234567890"),
+            zipcode = "45000000",
+            items = listOf(
+                OrderItem("123412341234", 100, 1),
+            ),
+            coupon = "VALE20EXPIRADO"
+        )
+
+        val error: Throwable = Assertions.assertThrows(Error::class.java) { placeOrderUseCase.execute(orderInputDto) }
+
+        assertEquals("Item not found", error.message)
     }
 }

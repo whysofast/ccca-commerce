@@ -26,13 +26,13 @@ class PlaceOrderUseCase(
 
         val distance = zipcodeCalculatorAPIPort.calculate("11111111", orderInputDto.zipcode)
 
-        orderInputDto.items.map { input ->
-            val itemFound = this.items.find { item -> item.id == input.id }
+        orderInputDto.items.map { inputItem ->
+            val itemFound = this.items.find { item -> item.id == inputItem.id }
 
             itemFound
                 ?.let {
-                    order.addItem(input.id, it.price, input.quantity)
-                    order.shippingPrice += shippingCalculator.calculate(distance, it) * input.quantity
+                    order.addItem(it.id, it.price, inputItem.quantity)
+                    order.shippingPrice += shippingCalculator.calculate(distance, it) * inputItem.quantity
                 }
                 ?: run { throw Error("Item not found") }
         }
