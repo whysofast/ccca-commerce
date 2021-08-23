@@ -1,7 +1,7 @@
 package com.ccca.commerce
 
 class Item(
-    val code: String,
+    val id: String,
     val description: String,
     val price: Long,
     val width: Int,
@@ -9,7 +9,7 @@ class Item(
     val length: Int,
     val weight: Int
 ) {
-    fun getVolume() = width*height*length/10e6
+    fun getVolume() = width * height * length / 10e6
 
-    fun getDensity() = weight/getVolume()
+    fun getDensity() = weight / getVolume()
 }

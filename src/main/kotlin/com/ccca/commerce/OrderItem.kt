@@ -1,7 +1,7 @@
 package com.ccca.commerce
 
-class OrderItem (
-    val description : String,
+class OrderItem(
+    val id: String,
     val price: Long,
     val quantity: Long
 )

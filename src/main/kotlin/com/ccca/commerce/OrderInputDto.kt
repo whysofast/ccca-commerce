@@ -1,12 +1,14 @@
 package com.ccca.commerce
 
-class OrderInputDto(
-    val cpf : Cpf,
-    val items : List<OrderItem>,
-    val coupon : String
+data class OrderInputDto(
+    val cpf: Cpf,
+    val zipcode: String,
+    val items: List<OrderItem>,
+    val coupon: String
 ) {
 }
 
-class OrderOutputDto(
-    val total : Long
+data class OrderOutputDto(
+    val total: Long,
+    val shippingPrice: Double
 )

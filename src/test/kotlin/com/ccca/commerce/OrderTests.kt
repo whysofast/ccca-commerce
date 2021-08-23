@@ -25,9 +25,9 @@ class OrderTests {
         val cpf = "01234567890"
 
         val order = Order(Cpf(cpf))
-        order.addItem("Mouse",100,1)
-        order.addItem("Teclado",200,2)
-        order.addItem("Monitor",500,3)
+        order.addItem("1", 100, 1)
+        order.addItem("2", 200, 2)
+        order.addItem("3", 500, 3)
 
         val total = order.getTotal()
         assertEquals(total, 2000)
@@ -38,11 +38,11 @@ class OrderTests {
         val cpf = "01234567890"
 
         val order = Order(Cpf(cpf))
-        order.addItem("Mouse",100,1)
-        order.addItem("Teclado",200,2)
-        order.addItem("Monitor",500,3)
+        order.addItem("1", 100, 1)
+        order.addItem("2", 200, 2)
+        order.addItem("3", 500, 3)
 
-        order.addCoupon(Coupon("FAST20",20.0, LocalDateTime.of(2022, 1, 1, 0, 0, 0)))
+        order.addCoupon(Coupon("FAST20", 20.0, LocalDateTime.of(2022, 1, 1, 0, 0, 0)))
 
         val total = order.getTotal()
         assertEquals(total, 1600)
@@ -53,11 +53,11 @@ class OrderTests {
         val cpf = "01234567890"
 
         val order = Order(Cpf(cpf))
-        order.addItem("Mouse",100,1)
-        order.addItem("Teclado",200,2)
-        order.addItem("Monitor",500,3)
+        order.addItem("1", 100, 1)
+        order.addItem("2", 200, 2)
+        order.addItem("3", 500, 3)
 
-        order.addCoupon(Coupon("FAST20",20.0, LocalDateTime.of(2020, 1, 1, 0, 0, 0)))
+        order.addCoupon(Coupon("FAST20", 20.0, LocalDateTime.of(2020, 1, 1, 0, 0, 0)))
 
         val total = order.getTotal()
         assertEquals(total, 2000)

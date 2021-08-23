@@ -2,29 +2,32 @@ package com.ccca.commerce
 
 class Order(
     val cpf: Cpf,
-    var coupon: Coupon? = null,
-    val items: MutableList<OrderItem> = mutableListOf(),
+    private var coupon: Coupon? = null,
+    private val items: MutableList<OrderItem> = mutableListOf(),
+    var shippingPrice: Double = 0.0
 ) {
 
     fun addItem(
-        description : String,
+        id: String,
         price: Long,
         quantity: Long
     ) {
-        items.add(OrderItem(description,price,quantity))
+        items.add(OrderItem(id, price, quantity))
     }
 
-    fun addCoupon(coupon: Coupon ){
+    fun addCoupon(coupon: Coupon) {
         if (coupon.isNotExpired()) {
             this.coupon = coupon
         }
     }
 
-    fun getTotal() : Long {
+    fun getTotal(): Long {
         var total = 0L
         this.items.map { total += it.price * it.quantity }
 
-        this.coupon?.let { total -= (total*it.discount/100).toLong() }
+        this.coupon?.let { total -= (total * it.discount / 100).toLong() }
+
+        total += this.shippingPrice.toLong()
 
         return total
     }
