@@ -15,7 +15,9 @@ class Order(
     }
 
     fun addCoupon(coupon: Coupon ){
-        this.coupon = coupon
+        if (coupon.isNotExpired()) {
+            this.coupon = coupon
+        }
     }
 
     fun getTotal() : Long {
