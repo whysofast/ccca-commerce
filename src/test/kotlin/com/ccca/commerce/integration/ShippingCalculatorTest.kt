@@ -1,5 +1,7 @@
-package com.ccca.commerce
+package com.ccca.commerce.integration
 
+import com.ccca.commerce.Item
+import com.ccca.commerce.ShippingCalculator
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

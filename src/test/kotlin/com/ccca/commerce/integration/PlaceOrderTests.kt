@@ -1,5 +1,9 @@
-package com.ccca.commerce
+package com.ccca.commerce.integration
 
+import com.ccca.commerce.Cpf
+import com.ccca.commerce.OrderInputDto
+import com.ccca.commerce.OrderItem
+import com.ccca.commerce.PlaceOrderUseCase
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
