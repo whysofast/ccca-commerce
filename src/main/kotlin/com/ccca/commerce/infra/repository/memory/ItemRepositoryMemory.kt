@@ -1,5 +1,7 @@
-package com.ccca.commerce
+package com.ccca.commerce.infra.repository.memory
 
+import com.ccca.commerce.domain.entity.Item
+import com.ccca.commerce.domain.repository.ItemRepository
 import org.springframework.stereotype.Component
 
 @Component

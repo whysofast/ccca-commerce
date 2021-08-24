@@ -1,9 +1,9 @@
 package com.ccca.commerce.integration
 
-import com.ccca.commerce.Cpf
-import com.ccca.commerce.OrderInputDto
-import com.ccca.commerce.OrderItem
-import com.ccca.commerce.PlaceOrderUseCase
+import com.ccca.commerce.application.PlaceOrderInputDto
+import com.ccca.commerce.application.PlaceOrderUseCase
+import com.ccca.commerce.domain.entity.Cpf
+import com.ccca.commerce.domain.entity.OrderItem
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -20,7 +20,7 @@ class PlaceOrderTests {
     @Test
     fun `should place an order `() {
 
-        val orderInputDto = OrderInputDto(
+        val orderInputDto = PlaceOrderInputDto(
             cpf = Cpf("01234567890"),
             zipcode = "45000000",
             items = listOf(
@@ -39,7 +39,7 @@ class PlaceOrderTests {
     @Test
     fun `should place an order with expired coupon`() {
 
-        val orderInputDto = OrderInputDto(
+        val orderInputDto = PlaceOrderInputDto(
             cpf = Cpf("01234567890"),
             zipcode = "45000000",
             items = listOf(
@@ -58,7 +58,7 @@ class PlaceOrderTests {
     @Test
     fun `should place an order with shipping price calculated correctly`() {
 
-        val orderInputDto = OrderInputDto(
+        val orderInputDto = PlaceOrderInputDto(
             cpf = Cpf("01234567890"),
             zipcode = "45000000",
             items = listOf(
@@ -77,7 +77,7 @@ class PlaceOrderTests {
     @Test
     fun `should place an order with MINIMUN shipping price calculated correctly`() {
 
-        val orderInputDto = OrderInputDto(
+        val orderInputDto = PlaceOrderInputDto(
             cpf = Cpf("01234567890"),
             zipcode = "45000000",
             items = listOf(
@@ -94,7 +94,7 @@ class PlaceOrderTests {
 
     @Test
     fun `should not create order with unknown item`() {
-        val orderInputDto = OrderInputDto(
+        val orderInputDto = PlaceOrderInputDto(
             cpf = Cpf("01234567890"),
             zipcode = "45000000",
             items = listOf(

@@ -1,4 +1,4 @@
-package com.ccca.commerce
+package com.ccca.commerce.domain.entity
 
 class Order(
     val cpf: Cpf,

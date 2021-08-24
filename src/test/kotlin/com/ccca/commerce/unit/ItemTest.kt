@@ -1,6 +1,6 @@
 package com.ccca.commerce.unit
 
-import com.ccca.commerce.Item
+import com.ccca.commerce.domain.entity.Item
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

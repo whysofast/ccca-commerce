@@ -1,4 +1,4 @@
-package com.ccca.commerce
+package com.ccca.commerce.domain.entity
 
 import java.time.Duration
 import java.time.LocalDateTime
@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 class Coupon(
     val name: String,
     val discount: Double,
-    val expiresAt : LocalDateTime
+    val expiresAt: LocalDateTime
 ) {
     fun isNotExpired() = Duration.between(this.expiresAt, LocalDateTime.now()).toDays() < 0
 }

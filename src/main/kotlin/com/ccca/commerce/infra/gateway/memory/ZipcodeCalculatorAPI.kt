@@ -1,5 +1,6 @@
-package com.ccca.commerce
+package com.ccca.commerce.infra.gateway.memory
 
+import com.ccca.commerce.domain.gateway.ZipcodeCalculatorAPIPort
 import org.springframework.stereotype.Component
 
 @Component

@@ -1,8 +1,8 @@
 package com.ccca.commerce.unit
 
-import com.ccca.commerce.Coupon
-import com.ccca.commerce.Cpf
-import com.ccca.commerce.Order
+import com.ccca.commerce.domain.entity.Coupon
+import com.ccca.commerce.domain.entity.Cpf
+import com.ccca.commerce.domain.entity.Order
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
