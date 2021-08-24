@@ -2,7 +2,7 @@ package com.ccca.commerce.domain.repository
 
 import com.ccca.commerce.domain.entity.Item
 
-//@Repository
+// (Port) -> Adapter -> Repository <= JpaRepository
 interface ItemRepository {
     fun getById(id: String): Item?
 }
