@@ -4,6 +4,7 @@ import com.ccca.commerce.domain.entity.Item
 import com.ccca.commerce.domain.repository.ItemRepository
 import org.springframework.stereotype.Component
 
+// Port -> (Adapter) -> Repository <= JpaRepository
 @Component
 class ItemRepositoryMemory : ItemRepository {
 
