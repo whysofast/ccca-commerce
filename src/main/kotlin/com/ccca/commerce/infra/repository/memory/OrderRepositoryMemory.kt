@@ -14,4 +14,6 @@ class OrderRepositoryMemory : OrderRepository {
         return orders.last()
     }
 
+    override fun count() = this.orders.size
+
 }

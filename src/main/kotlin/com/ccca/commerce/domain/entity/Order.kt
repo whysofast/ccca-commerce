@@ -1,10 +1,15 @@
 package com.ccca.commerce.domain.entity
 
-class Order(
+import java.time.LocalDate
+
+data class Order(
     val cpf: Cpf,
     private var coupon: Coupon? = null,
     private val items: MutableList<OrderItem> = mutableListOf(),
-    var shippingPrice: Double = 0.0
+    var shippingPrice: Double = 0.0,
+    val issueDate: LocalDate = LocalDate.now(),
+    val sequence: Int = 1,
+    var code: OrderCode = OrderCode(issueDate, sequence)
 ) {
 
     fun addItem(

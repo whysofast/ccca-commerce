@@ -18,7 +18,10 @@ class PlaceOrderUseCase(
 ) {
 
     fun execute(placeOrderInputDto: PlaceOrderInputDto): PlaceOrderOutputDto {
-        val order = Order(placeOrderInputDto.cpf)
+
+        val sequence = orderRepository.count() + 1
+
+        val order = Order(placeOrderInputDto.cpf, issueDate = placeOrderInputDto.issueDate, sequence = sequence)
 
         val distance = zipcodeCalculatorAPIPort.calculate("11111111", placeOrderInputDto.zipcode)
 
@@ -39,7 +42,7 @@ class PlaceOrderUseCase(
 
         orderRepository.save(order)
 
-        return PlaceOrderOutputDto(order.getTotal(), order.shippingPrice)
+        return PlaceOrderOutputDto(order.getTotal(), order.shippingPrice, order.code)
     }
 
 }

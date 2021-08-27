@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.time.LocalDate
 
 
 @SpringBootTest
@@ -89,6 +90,26 @@ class PlaceOrderTests {
         val orderOutputDto = placeOrderUseCase.execute(orderInputDto)
 
         assertEquals(orderOutputDto.shippingPrice, 10.0)
+    }
+
+    @Test
+    fun `should place an order calculating code`() {
+
+        val orderInputDto = PlaceOrderInputDto(
+            cpf = Cpf("01234567890"),
+            zipcode = "45000000",
+            items = listOf(
+                OrderItem("4", 100, 1),
+            ),
+            issueDate = LocalDate.of(2021, 1, 1),
+            coupon = "VALE20EXPIRADO"
+        )
+
+        placeOrderUseCase.execute(orderInputDto)
+        placeOrderUseCase.execute(orderInputDto)
+        val orderOutputDto = placeOrderUseCase.execute(orderInputDto)
+
+        assertEquals(orderOutputDto.code.value, "202100000003")
     }
 
 

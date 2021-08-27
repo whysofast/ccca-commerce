@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 
@@ -49,6 +50,20 @@ class OrderTests {
 
         val total = order.getTotal()
         assertEquals(total, 1600)
+    }
+
+    @Test
+    fun `should create a order calculating code`() {
+        val cpf = "01234567890"
+
+        val order = Order(Cpf(cpf), issueDate = LocalDate.of(2021, 1, 1))
+        order.addItem("1", 100, 1)
+        order.addItem("2", 200, 2)
+        order.addItem("3", 500, 3)
+
+        order.addCoupon(Coupon("FAST20", 20.0, LocalDateTime.of(2022, 1, 1, 0, 0, 0)))
+
+        assertEquals(order.code.value, "202100000001")
     }
 
     @Test
