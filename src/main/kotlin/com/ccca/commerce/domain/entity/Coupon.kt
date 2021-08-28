@@ -3,7 +3,7 @@ package com.ccca.commerce.domain.entity
 import java.time.Duration
 import java.time.LocalDateTime
 
-class Coupon(
+data class Coupon(
     val name: String,
     val discount: Double,
     val expiresAt: LocalDateTime

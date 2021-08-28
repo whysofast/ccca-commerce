@@ -1,6 +1,6 @@
 package com.ccca.commerce.domain.entity
 
-class Item(
+data class Item(
     val id: String,
     val description: String,
     val price: Long,
