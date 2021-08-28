@@ -105,8 +105,18 @@ class PlaceOrderTests {
             coupon = "VALE20EXPIRADO"
         )
 
-        placeOrderUseCase.execute(orderInputDto)
-        placeOrderUseCase.execute(orderInputDto)
+        val orderInputDto2 = PlaceOrderInputDto(
+            cpf = Cpf("01234567890"),
+            zipcode = "45000000",
+            items = listOf(
+                OrderItem("3", 100, 1),
+            ),
+            issueDate = LocalDate.of(2021, 1, 1),
+            coupon = "VALE20EXPIRADO"
+        )
+
+        placeOrderUseCase.execute(orderInputDto2)
+        placeOrderUseCase.execute(orderInputDto2)
         val orderOutputDto = placeOrderUseCase.execute(orderInputDto)
 
         assertEquals(orderOutputDto.code.value, "202100000003")

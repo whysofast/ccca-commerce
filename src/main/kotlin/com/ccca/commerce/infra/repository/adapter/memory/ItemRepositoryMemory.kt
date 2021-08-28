@@ -2,11 +2,14 @@ package com.ccca.commerce.infra.repository.adapter.memory
 
 import com.ccca.commerce.domain.entity.Item
 import com.ccca.commerce.domain.repository.port.ItemRepository
+import com.ccca.commerce.infra.repository.database.ItemJpaRepository
 import org.springframework.stereotype.Component
 
 // Port -> (Adapter) -> Repository <= JpaRepository
 @Component
-class ItemRepositoryMemory : ItemRepository {
+class ItemRepositoryMemory(
+    private val itemJpaRepository: ItemJpaRepository
+) : ItemRepository {
 
     private val items = listOf(
         Item("1", "Mouse", 100, 50, 50, 50, 22),
@@ -16,7 +19,10 @@ class ItemRepositoryMemory : ItemRepository {
     )
 
     override fun getById(id: String): Item? {
-        return this.items.find { item -> item.id == id }
+//        return this.items.find { item -> item.id == id }
+        val itemFound = itemJpaRepository.findById(id.toLong()).orElseGet { null }
+
+        return itemFound?.toModel()
     }
 
 }
