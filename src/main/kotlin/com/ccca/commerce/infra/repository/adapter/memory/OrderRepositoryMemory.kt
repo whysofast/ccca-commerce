@@ -1,7 +1,7 @@
-package com.ccca.commerce.infra.repository.memory
+package com.ccca.commerce.infra.repository.adapter.memory
 
 import com.ccca.commerce.domain.entity.Order
-import com.ccca.commerce.domain.repository.OrderRepository
+import com.ccca.commerce.domain.repository.port.OrderRepository
 import org.springframework.stereotype.Component
 
 // Port -> (Adapter) -> Repository <= JpaRepository

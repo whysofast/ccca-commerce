@@ -2,9 +2,9 @@ package com.ccca.commerce.application
 
 import com.ccca.commerce.domain.entity.Order
 import com.ccca.commerce.domain.gateway.ZipcodeCalculatorAPIPort
-import com.ccca.commerce.domain.repository.CouponRepository
-import com.ccca.commerce.domain.repository.ItemRepository
-import com.ccca.commerce.domain.repository.OrderRepository
+import com.ccca.commerce.domain.repository.port.CouponRepository
+import com.ccca.commerce.domain.repository.port.ItemRepository
+import com.ccca.commerce.domain.repository.port.OrderRepository
 import com.ccca.commerce.domain.service.ShippingCalculator
 import org.springframework.stereotype.Component
 
