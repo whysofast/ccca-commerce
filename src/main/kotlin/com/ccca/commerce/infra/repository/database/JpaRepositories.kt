@@ -5,3 +5,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ItemJpaRepository : JpaRepository<ItemDBO, Long>
+
+@Repository
+interface CouponJpaRepository : JpaRepository<CouponDBO, String> {
+    fun findByName(name: String): CouponDBO?
+}
