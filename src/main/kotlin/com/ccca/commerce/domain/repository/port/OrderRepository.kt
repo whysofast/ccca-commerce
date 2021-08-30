@@ -6,4 +6,5 @@ interface OrderRepository {
     fun save(order: Order): Order
     fun count(): Int
     fun findByCode(code: String): Order?
+    fun clear()
 }

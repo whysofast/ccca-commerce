@@ -19,5 +19,6 @@ class OrderRepositoryMemory : OrderRepository {
 
     override fun findByCode(code: String) = orders.find { it.code.value == code }
 
+    override fun clear() = this.orders.clear()
 
 }

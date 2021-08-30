@@ -4,8 +4,10 @@ import com.ccca.commerce.application.PlaceOrderInputDto
 import com.ccca.commerce.application.PlaceOrderUseCase
 import com.ccca.commerce.domain.entity.Cpf
 import com.ccca.commerce.domain.entity.OrderItem
+import com.ccca.commerce.domain.repository.port.OrderRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -17,6 +19,14 @@ class PlaceOrderTests {
 
     @Autowired
     private lateinit var placeOrderUseCase: PlaceOrderUseCase
+
+    @Autowired
+    private lateinit var orderRepository: OrderRepository
+
+    @BeforeEach
+    fun init() {
+        orderRepository.clear()
+    }
 
     @Test
     fun `should place an order `() {
