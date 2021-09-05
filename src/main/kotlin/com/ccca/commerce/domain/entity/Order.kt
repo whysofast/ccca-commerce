@@ -4,7 +4,7 @@ import java.time.LocalDate
 
 data class Order(
     val cpf: Cpf,
-    private var coupon: Coupon? = null,
+    var coupon: Coupon? = null,
     val items: MutableList<OrderItem> = mutableListOf(),
     var shippingPrice: Double = 0.0,
     val issueDate: LocalDate = LocalDate.now(),

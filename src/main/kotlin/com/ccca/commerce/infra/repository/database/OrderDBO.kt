@@ -3,13 +3,10 @@ package com.ccca.commerce.infra.repository.database
 import com.ccca.commerce.domain.entity.Cpf
 import com.ccca.commerce.domain.entity.Order
 import org.hibernate.annotations.GenericGenerator
-import org.hibernate.annotations.LazyCollection
-import org.hibernate.annotations.LazyCollectionOption
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import java.time.LocalDate
 import java.time.LocalDateTime
-import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -18,7 +15,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 
-@Entity(name = "order")
+@Entity(name = "pedido")
 class OrderDBO(
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -31,9 +28,8 @@ class OrderDBO(
     @JoinColumn(name = "name")
     val coupon: CouponDBO? = null,
 
-    @field:OneToMany(mappedBy = "order", cascade = [CascadeType.MERGE])
-    @field:LazyCollection(LazyCollectionOption.FALSE)
-    val items: MutableList<OrderItemDBO> = mutableListOf(),
+    @OneToMany
+    val items: List<OrderItemDBO> = listOf(),
 
     val shippingPrice: Double = 0.0,
 
@@ -59,14 +55,16 @@ class OrderDBO(
     )
 }
 
-fun Order.toDbo(coupon: CouponDBO): OrderDBO {
+fun Order.toDbo(coupon: CouponDBO? = null): OrderDBO {
+
     val orderDBO = OrderDBO(
         cpf = cpf.digits,
         coupon = coupon,
         shippingPrice = shippingPrice,
         issueDate = issueDate,
-        sequence = sequence
+        sequence = sequence,
+        items = items.map { it.toDbo() }
     )
-    items.map { orderDBO.items.add(it.toDbo(orderDBO)) }
+//    items.map { orderDBO.items.add(it.toDbo()) }
     return orderDBO
 }

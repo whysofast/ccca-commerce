@@ -10,3 +10,6 @@ interface ItemJpaRepository : JpaRepository<ItemDBO, Long>
 interface CouponJpaRepository : JpaRepository<CouponDBO, String> {
     fun findByName(name: String): CouponDBO?
 }
+
+@Repository
+interface OrderJpaRepository : JpaRepository<OrderDBO, Long>
