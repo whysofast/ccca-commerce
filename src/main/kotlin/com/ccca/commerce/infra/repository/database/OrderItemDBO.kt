@@ -4,7 +4,7 @@ import com.ccca.commerce.domain.entity.OrderItem
 import javax.persistence.Entity
 import javax.persistence.Id
 
-@Entity
+@Entity(name = "order-item")
 class OrderItemDBO(
 
     @Id
@@ -13,11 +13,6 @@ class OrderItemDBO(
     val price: Long,
 
     val quantity: Long = 1
-//    ,
-//
-//    @ManyToOne(optional = false)
-//    @field:JoinColumn(name = "order_id")
-//    val order: OrderDBO
 ) {
     fun toModel() = OrderItem(
         id = id,
@@ -29,5 +24,5 @@ class OrderItemDBO(
 fun OrderItem.toDbo() = OrderItemDBO(
     id = id,
     price = price,
-    quantity = quantity,
+    quantity = quantity
 )

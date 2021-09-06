@@ -29,13 +29,15 @@ class OrderDBO(
     val coupon: CouponDBO? = null,
 
     @OneToMany
-    val items: List<OrderItemDBO> = listOf(),
+    val items: MutableList<OrderItemDBO> = mutableListOf(),
 
     val shippingPrice: Double = 0.0,
 
     val issueDate: LocalDate = LocalDate.now(),
 
     val sequence: Int = 1,
+
+    val code: String,
 
     @CreatedDate
     @Column(name = "created_at")
@@ -63,8 +65,8 @@ fun Order.toDbo(coupon: CouponDBO? = null): OrderDBO {
         shippingPrice = shippingPrice,
         issueDate = issueDate,
         sequence = sequence,
-        items = items.map { it.toDbo() }
+        code = code.value
     )
-//    items.map { orderDBO.items.add(it.toDbo()) }
+    items.map { orderDBO.items.add(it.toDbo()) }
     return orderDBO
 }

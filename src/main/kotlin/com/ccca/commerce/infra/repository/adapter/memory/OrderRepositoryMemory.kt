@@ -20,16 +20,29 @@ class OrderRepositoryMemory(
         orders.add(order)
 
         val foundCoupon = order.coupon?.let { couponJpaRepository.findByName(it.name) }
-
-        orderJpaRepository.save(order.toDbo(foundCoupon))
-
-        return orders.last()
+        val savedOrder = orderJpaRepository.save(order.toDbo(foundCoupon))
+        return savedOrder.toModel()
     }
 
-    override fun count() = this.orders.size
+    override fun count(): Int {
+        this.orders.size
 
-    override fun findByCode(code: String) = orders.find { it.code.value == code }
+        return orderJpaRepository.count().toInt()
+    }
 
-    override fun clear() = this.orders.clear()
+
+    override fun findByCode(code: String): Order? {
+        val foundOrder = orderJpaRepository.findByCode(code)
+//        return foundOrder?.toModel()
+
+        return orders.find { it.code.value == code }
+    }
+
+
+    override fun clear() {
+        this.orders.clear()
+
+        orderJpaRepository.deleteAll()
+    }
 
 }

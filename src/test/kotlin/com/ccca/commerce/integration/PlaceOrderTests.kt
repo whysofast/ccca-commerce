@@ -125,11 +125,11 @@ class PlaceOrderTests {
             coupon = "VALE20EXPIRADO"
         )
 
-        placeOrderUseCase.execute(orderInputDto2)
+//        placeOrderUseCase.execute(orderInputDto2)
         placeOrderUseCase.execute(orderInputDto2)
         val orderOutputDto = placeOrderUseCase.execute(orderInputDto)
 
-        assertEquals(orderOutputDto.code.value, "202100000003")
+        assertEquals(orderOutputDto.code.value, "202100000002")
     }
 
 
