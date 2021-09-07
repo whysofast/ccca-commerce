@@ -10,7 +10,7 @@ import javax.persistence.Id
 
 @Entity(name = "item")
 class ItemDBO(
-    @Id()
+    @Id
     val id: Long,
     val description: String,
     val price: Long,

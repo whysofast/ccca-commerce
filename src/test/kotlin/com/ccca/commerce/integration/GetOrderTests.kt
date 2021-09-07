@@ -25,9 +25,9 @@ class GetOrderTests {
             cpf = Cpf("01234567890"),
             zipcode = "45000000",
             items = listOf(
-                OrderItem("1", 100, 1),
-                OrderItem("2", 200, 2),
-                OrderItem("3", 500, 3)
+                OrderItem("1", 101, 1),
+                OrderItem("2", 201, 2),
+                OrderItem("3", 501, 3)
             ),
             coupon = "VALE20"
         )
@@ -36,6 +36,6 @@ class GetOrderTests {
 
         val getOrderOutputDto = getOrderUseCase.execute(orderOutputDto.code.value)
 
-        Assertions.assertEquals(getOrderOutputDto.total, 2920)
+        Assertions.assertEquals(getOrderOutputDto.total, 2925)
     }
 }

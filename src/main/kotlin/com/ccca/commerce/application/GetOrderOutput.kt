@@ -1,16 +1,16 @@
 package com.ccca.commerce.application
 
-import com.ccca.commerce.domain.entity.Item
 import com.ccca.commerce.domain.entity.Order
+import com.ccca.commerce.domain.entity.OrderItem
 
 class GetOrderOutput(
     val code: String,
     val shippingPrice: Double,
     val total: Long,
-    val orderItems: List<Item?>
+    val orderItems: MutableList<OrderItem>
 )
 
-fun Order.toOutputDto(orderItems: List<Item?>) = GetOrderOutput(
+fun Order.toOutputDto(orderItems: MutableList<OrderItem>) = GetOrderOutput(
     code = code.value,
     shippingPrice = shippingPrice,
     total = getTotal(),

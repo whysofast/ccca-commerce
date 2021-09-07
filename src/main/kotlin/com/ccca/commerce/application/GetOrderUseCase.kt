@@ -1,14 +1,10 @@
 package com.ccca.commerce.application
 
-import com.ccca.commerce.domain.repository.port.CouponRepository
-import com.ccca.commerce.domain.repository.port.ItemRepository
 import com.ccca.commerce.domain.repository.port.OrderRepository
 import org.springframework.stereotype.Component
 
 @Component
 class GetOrderUseCase(
-    private val itemRepository: ItemRepository,
-    private val couponRepository: CouponRepository,
     private val orderRepository: OrderRepository
 ) {
 
@@ -16,13 +12,7 @@ class GetOrderUseCase(
 
         val orderFound = orderRepository.findByCode(code) ?: run { throw Error("Order not found") }
 
-        // Não é responsabilidade desse cara puxar os items pra criar o output. Poderá ser feito ao implementar o banco de
-        // dados e reconstruir o toModel a partir dos objetos recuperados por conta das foreign keys.
-        val orderItems = orderFound.items.map { item ->
-            itemRepository.getById(item.id)
-        }
-
-        return orderFound.toOutputDto(orderItems)
+        return orderFound.toOutputDto(orderFound.items)
     }
 
 }

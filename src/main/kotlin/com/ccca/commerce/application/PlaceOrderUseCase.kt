@@ -29,7 +29,7 @@ class PlaceOrderUseCase(
 
             itemRepository.getById(inputItem.id)
                 ?.let { itemFound ->
-                    order.addItem(itemFound.id, itemFound.price, inputItem.quantity)
+                    order.addItem(itemFound.id, inputItem.price, inputItem.quantity)
                     order.shippingPrice += shippingCalculator.calculate(distance, itemFound) * inputItem.quantity
                 }
                 ?: run { throw Error("Item not found") }
