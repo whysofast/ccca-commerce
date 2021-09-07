@@ -33,9 +33,9 @@ class OrderRepositoryMemory(
 
     override fun findByCode(code: String): Order? {
         val foundOrder = orderJpaRepository.findByCode(code)
-//        return foundOrder?.toModel()
+        return foundOrder?.toModel()
 
-        return orders.find { it.code.value == code }
+//        return orders.find { it.code.value == code }
     }
 
 

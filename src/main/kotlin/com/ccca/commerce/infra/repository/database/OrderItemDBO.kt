@@ -4,7 +4,7 @@ import com.ccca.commerce.domain.entity.OrderItem
 import javax.persistence.Entity
 import javax.persistence.Id
 
-@Entity(name = "order-item")
+@Entity(name = "orderItem")
 class OrderItemDBO(
 
     @Id
