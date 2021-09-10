@@ -61,7 +61,7 @@ class OrderDBO(
     )
 }
 
-fun Order.toDbo(coupon: CouponDBO? = null): OrderDBO {
+fun Order.toDBO(coupon: CouponDBO? = null): OrderDBO {
 
     val orderDBO = OrderDBO(
         cpf = cpf.digits,
@@ -71,6 +71,6 @@ fun Order.toDbo(coupon: CouponDBO? = null): OrderDBO {
         sequence = sequence,
         code = code.value
     )
-    items.map { orderDBO.items.add(it.toDbo()) }
+    items.map { orderDBO.items.add(it.toDBO()) }
     return orderDBO
 }

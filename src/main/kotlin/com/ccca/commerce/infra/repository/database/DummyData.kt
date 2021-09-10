@@ -2,6 +2,7 @@ package com.ccca.commerce.infra.repository.database
 
 import com.ccca.commerce.domain.entity.Coupon
 import com.ccca.commerce.domain.entity.Item
+import com.ccca.commerce.domain.entity.TaxTable
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 import javax.annotation.PostConstruct
@@ -9,7 +10,8 @@ import javax.annotation.PostConstruct
 @Component
 class DummyData(
     private val itemJpaRepository: ItemJpaRepository,
-    private val couponJpaRepository: CouponJpaRepository
+    private val couponJpaRepository: CouponJpaRepository,
+    private val taxTableJpaRepository: TaxTableJpaRepository,
 ) {
 
     @PostConstruct
@@ -24,7 +26,7 @@ class DummyData(
 
         items.forEach { item ->
             print("saving item $item \n")
-            itemJpaRepository.save(item.toDbo())
+            itemJpaRepository.save(item.toDBO())
         }
 
         val coupons = listOf(
@@ -34,9 +36,21 @@ class DummyData(
 
         coupons.forEach { coupon ->
             print("saving coupon $coupon")
-            couponJpaRepository.save(coupon.toDbo())
+            couponJpaRepository.save(coupon.toDBO())
+        }
+
+        val taxTables = listOf(
+            TaxTable("1", "default", 15.0),
+            TaxTable("2", "default", 15.0),
+            TaxTable("3", "default", 5.0),
+            TaxTable("1", "november", 5.0),
+            TaxTable("2", "november", 5.0),
+            TaxTable("3", "november", 1.0)
+        )
+
+        taxTables.forEach { taxTable ->
+            taxTableJpaRepository.save(taxTable.toDBO())
         }
     }
-
 
 }

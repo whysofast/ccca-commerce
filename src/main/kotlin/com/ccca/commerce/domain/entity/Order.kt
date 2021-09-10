@@ -9,7 +9,8 @@ data class Order(
     var shippingPrice: Double = 0.0,
     val issueDate: LocalDate = LocalDate.now(),
     val sequence: Int = 1,
-    var code: OrderCode = OrderCode(issueDate, sequence)
+    var code: OrderCode = OrderCode(issueDate, sequence),
+    var taxes: Double = 0.0
 ) {
 
     fun addItem(

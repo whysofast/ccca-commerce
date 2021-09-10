@@ -148,4 +148,23 @@ class PlaceOrderTests {
 
         assertEquals("Item not found", error.message)
     }
+
+    @Test
+    fun `should place an order calculating taxes`() {
+
+        val orderInputDto = PlaceOrderInputDto(
+            cpf = Cpf("01234567890"),
+            zipcode = "45000000",
+            items = listOf(
+                OrderItem("1", 1000, 2),
+                OrderItem("2", 5000, 1),
+                OrderItem("3", 30, 3)
+            ),
+            coupon = "VALE20EXPIRADO"
+        )
+
+        val orderOutputDto = placeOrderUseCase.execute(orderInputDto)
+
+        assertEquals(orderOutputDto.taxes, 1054.5)
+    }
 }

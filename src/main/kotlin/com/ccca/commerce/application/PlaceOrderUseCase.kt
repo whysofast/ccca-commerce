@@ -1,10 +1,12 @@
 package com.ccca.commerce.application
 
 import com.ccca.commerce.domain.entity.Order
+import com.ccca.commerce.domain.factory.TaxCalculatorFactory
 import com.ccca.commerce.domain.gateway.ZipcodeCalculatorAPIPort
 import com.ccca.commerce.domain.repository.port.CouponRepository
 import com.ccca.commerce.domain.repository.port.ItemRepository
 import com.ccca.commerce.domain.repository.port.OrderRepository
+import com.ccca.commerce.domain.repository.port.TaxTableRepository
 import com.ccca.commerce.domain.service.ShippingCalculator
 import org.springframework.stereotype.Component
 
@@ -14,7 +16,8 @@ class PlaceOrderUseCase(
     private val zipcodeCalculatorAPIPort: ZipcodeCalculatorAPIPort,
     private val itemRepository: ItemRepository,
     private val couponRepository: CouponRepository,
-    private val orderRepository: OrderRepository
+    private val orderRepository: OrderRepository,
+    private val taxTableRepository: TaxTableRepository
 ) {
 
     fun execute(placeOrderInputDto: PlaceOrderInputDto): PlaceOrderOutputDto {
@@ -25,12 +28,17 @@ class PlaceOrderUseCase(
 
         val distance = zipcodeCalculatorAPIPort.calculate("11111111", placeOrderInputDto.zipcode)
 
+        val taxCalculator = TaxCalculatorFactory().create(placeOrderInputDto.issueDate)
+
         placeOrderInputDto.items.map { inputItem ->
 
             itemRepository.getById(inputItem.id)
                 ?.let { itemFound ->
                     order.addItem(itemFound.id, inputItem.price, inputItem.quantity)
                     order.shippingPrice += shippingCalculator.calculate(distance, itemFound) * inputItem.quantity
+                    val taxTables = taxTableRepository.getByItemId(itemFound.id)
+                    val taxes = taxCalculator.calculate(inputItem, taxTables)
+                    order.taxes += taxes * inputItem.quantity
                 }
                 ?: run { throw Error("Item not found") }
         }
@@ -42,7 +50,7 @@ class PlaceOrderUseCase(
 
         orderRepository.save(order)
 
-        return PlaceOrderOutputDto(order.getTotal(), order.shippingPrice, order.code)
+        return PlaceOrderOutputDto(order.getTotal(), order.shippingPrice, order.code, order.taxes)
     }
 
 }

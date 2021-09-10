@@ -18,3 +18,8 @@ interface OrderJpaRepository : JpaRepository<OrderDBO, Long> {
 
 @Repository
 interface OrderItemJpaRepository : JpaRepository<OrderItemDBO, String>
+
+@Repository
+interface TaxTableJpaRepository : JpaRepository<TaxTableDBO, Long> {
+    fun findAllByItemId(itemId: Long): List<TaxTableDBO?>
+}

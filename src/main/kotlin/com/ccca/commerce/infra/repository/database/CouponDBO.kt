@@ -28,7 +28,7 @@ class CouponDBO(
     )
 }
 
-fun Coupon.toDbo() = CouponDBO(
+fun Coupon.toDBO() = CouponDBO(
     name = name,
     discount = discount,
     expiresAt = expiresAt

@@ -36,7 +36,7 @@ class ItemDBO(
     )
 }
 
-fun Item.toDbo() = ItemDBO(
+fun Item.toDBO() = ItemDBO(
     id = id.toLong(),
     description = description,
     price = price,

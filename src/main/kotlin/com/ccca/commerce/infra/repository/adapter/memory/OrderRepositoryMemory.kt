@@ -4,7 +4,7 @@ import com.ccca.commerce.domain.entity.Order
 import com.ccca.commerce.domain.repository.port.OrderRepository
 import com.ccca.commerce.infra.repository.database.CouponJpaRepository
 import com.ccca.commerce.infra.repository.database.OrderJpaRepository
-import com.ccca.commerce.infra.repository.database.toDbo
+import com.ccca.commerce.infra.repository.database.toDBO
 import org.springframework.stereotype.Component
 
 // Port -> (Adapter) -> Repository <= JpaRepository
@@ -16,7 +16,7 @@ class OrderRepositoryMemory(
 
     override fun save(order: Order): Order {
         val foundCoupon = order.coupon?.let { couponJpaRepository.findByName(it.name) }
-        val savedOrder = orderJpaRepository.save(order.toDbo(foundCoupon))
+        val savedOrder = orderJpaRepository.save(order.toDBO(foundCoupon))
         return savedOrder.toModel()
     }
 

@@ -16,5 +16,6 @@ data class PlaceOrderInputDto(
 data class PlaceOrderOutputDto(
     val total: Long,
     val shippingPrice: Double,
-    val code: OrderCode
+    val code: OrderCode,
+    val taxes: Double = 0.0
 )

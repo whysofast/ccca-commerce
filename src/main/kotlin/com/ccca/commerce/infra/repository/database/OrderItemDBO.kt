@@ -21,7 +21,7 @@ class OrderItemDBO(
     )
 }
 
-fun OrderItem.toDbo() = OrderItemDBO(
+fun OrderItem.toDBO() = OrderItemDBO(
     id = id,
     price = price,
     quantity = quantity
