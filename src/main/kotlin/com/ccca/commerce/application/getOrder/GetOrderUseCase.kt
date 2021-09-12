@@ -1,4 +1,4 @@
-package com.ccca.commerce.application
+package com.ccca.commerce.application.getOrder
 
 import com.ccca.commerce.domain.repository.port.OrderRepository
 import org.springframework.stereotype.Component
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component
 @Component
 class GetOrderUseCase(
     private val orderRepository: OrderRepository
-) {
+) : GetOrderPort {
 
-    fun execute(code: String): GetOrderOutput {
+    override fun execute(code: String): GetOrderOutput {
 
         val orderFound = orderRepository.findByCode(code) ?: run { throw Error("Order not found") }
 

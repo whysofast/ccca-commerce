@@ -1,8 +1,8 @@
 package com.ccca.commerce.integration
 
-import com.ccca.commerce.application.GetOrderUseCase
 import com.ccca.commerce.application.PlaceOrderInputDto
 import com.ccca.commerce.application.PlaceOrderUseCase
+import com.ccca.commerce.application.getOrder.GetOrderUseCase
 import com.ccca.commerce.domain.entity.Cpf
 import com.ccca.commerce.domain.entity.OrderItem
 import org.junit.jupiter.api.Assertions

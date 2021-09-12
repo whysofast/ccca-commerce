@@ -1,4 +1,4 @@
-package com.ccca.commerce.application
+package com.ccca.commerce.application.getOrder
 
 import com.ccca.commerce.domain.entity.Order
 import com.ccca.commerce.domain.entity.OrderItem
