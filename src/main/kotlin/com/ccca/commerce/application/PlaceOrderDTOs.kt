@@ -9,9 +9,18 @@ data class PlaceOrderInputDto(
     val cpf: Cpf,
     val zipcode: String,
     val items: List<OrderItem>,
-    val issueDate: LocalDate = LocalDate.now(),
-    val coupon: String
+    val coupon: String,
+    val issueDate: LocalDate = LocalDate.now()
 )
+
+data class PlaceOrderInputRESTDto(
+    val cpf: Cpf,
+    val zipcode: String,
+    val items: List<OrderItem>,
+    val coupon: String
+) {
+    fun toDTO() = PlaceOrderInputDto(cpf,zipcode,items,coupon)
+}
 
 data class PlaceOrderOutputDto(
     val total: Long,
